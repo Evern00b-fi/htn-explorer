@@ -1,5 +1,5 @@
 // socket.io gives a reconnected client a new session without rooms, so (re)join on every connect.
-// Returns a function that removes the connect handler again.
+// Returns a function that removes the connect handler again (it does not leave the rooms).
 export function joinRoomsOnConnect(socket) {
   const joinRooms = () => {
     socket.emit("last-blocks", ""); // the reply joins room "blocks"

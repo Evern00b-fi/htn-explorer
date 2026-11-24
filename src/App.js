@@ -77,7 +77,7 @@ function App() {
     socket.on("bluescore", (e) => {
       setBlueScore(e.blueScore);
     });
-    const leaveRooms = joinRoomsOnConnect(socket);
+    const stopRejoiningRooms = joinRoomsOnConnect(socket);
 
     socket.on("new-block", (d) => {
       setBlocks([...blocksRef.current, d].slice(-60));
@@ -85,7 +85,7 @@ function App() {
 
     return () => {
       clearInterval(intervalPrice);
-      leaveRooms();
+      stopRejoiningRooms();
       socket.off("connect");
       socket.off("disconnect");
       socket.off("last-blocks");
